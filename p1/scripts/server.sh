@@ -1,0 +1,1 @@
+cp /var/lib/rancher/k3s/server/node-token /vagrant/token

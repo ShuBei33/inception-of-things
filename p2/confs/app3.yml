@@ -1,0 +1,40 @@
+#Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app3
+spec:
+  selector:
+    app.kubernetes.io/name: app3
+  ports:
+    - protocol: TCP
+      port: 80 # Port du service à l'intérieur du cluster
+      targetPort: 8080 # Port sur lequel l'application tourne dans le pod
+
+---
+
+#Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app3
+  template:
+    metadata:
+      labels:
+        app: app3
+    spec:
+      containers:
+      - name: app3
+        image: paulbouwer/hello-kubernetes:1.10
+        env:
+        - name: MESSAGE
+          value: Hello from app3 ! UwU
+        ports:
+        - containerPort: 8080

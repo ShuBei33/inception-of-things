@@ -1,10 +1,11 @@
+set -x
+
 echo '=====   Mise à jour   ====='
-apk update
-apk upgrade
+apt-get update
 
 #curl installation
 echo '=====   Installation de cURL    ====='
-apk add --update curl
+apt-get install -y curl net-tools
 
 #id vagrant pwd vagrant
 echo 'vagrant:vagrant' | chpasswd
